@@ -28,7 +28,7 @@ const connect = async () => {
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://btfiverr-client-jfxuptwg2-hvbtrung.vercel.app"
+        "https://btfiverr-client.vercel.app"
     ], credentials: true
 }));
 app.use(express.json());
