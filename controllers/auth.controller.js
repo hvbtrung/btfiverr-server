@@ -33,13 +33,17 @@ export const login = async (req, res, next) => {
                 id: user._id,
                 isSeller: user.isSeller,
             },
-            process.env.JWT_KEY
+            process.env.JWT_KEY,
+            { expiresIn: '1d' }
         );
 
         const { password, ...info } = user._doc;
         res
             .cookie("accessToken", token, {
                 httpOnly: true,
+                expires: new Date(Date.now() + 1000 * 86400), // 1 day
+                sameSite: 'none',
+                secure: true,
             })
             .status(200)
             .send(info);
